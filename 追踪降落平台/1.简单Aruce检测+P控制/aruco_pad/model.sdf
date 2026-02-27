@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <model name="aruco_pad">
+    <static>false</static>
+    <link name="base_link">
+      <pose>0 0 0.1 0 0 0</pose>
+      <inertial>
+        <mass>5.0</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <iyy>0.1</iyy>
+          <izz>0.1</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>1.0 1.0 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="body_visual">
+        <geometry>
+          <box>
+            <size>1.0 1.0 0.2</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.8 0.1 0.1 1</ambient>
+          <diffuse>0.8 0.1 0.1 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="aruco_visual">
+        <pose>0 0 0.101 0 0 0</pose>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>0.6 0.6</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_pad/materials/scripts</uri>
+            <uri>model://aruco_pad/materials/textures</uri>
+            <name>ArucoPad/Marker</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Use planar move plugin to allow ROS to send velocity commands to it -->
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>target/cmd_vel</commandTopic>
+      <odometryTopic>target/odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </model>
+</sdf>
