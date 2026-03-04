@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="mutil_sim" output="screen" />
+
+    <node pkg="rosservice" type="rosservice" name="spawn_turtle2" args="call /spawn 2.0 2.0 0.0 'turtle2'" />
+
+    <node pkg="ros_learning" type="closed_loop.py" name="controller_1" output="screen" />
+
+    </launch>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="gui" value="true"/>
+        <arg name="paused" value="false"/>
+        <arg name="verbose" value="false"/>
+    </include>
+
+    <group ns="iris_0">
+        <include file="$(find px4)/launch/single_vehicle_spawn.launch">
+            <arg name="x" value="0"/>
+            <arg name="y" value="0"/>
+            <arg name="z" value="0"/>
+            <arg name="vehicle" value="iris"/>
+            <arg name="ID" value="0"/>
+            <arg name="mavlink_udp_port" value="14580"/>
+            <arg name="mavlink_tcp_port" value="4560"/>
+        </include>
+    </group>
+
+    <group ns="iris_1">
+        <include file="$(find px4)/launch/single_vehicle_spawn.launch">
+            <arg name="x" value="1"/>
+            <arg name="y" value="1"/>
+            <arg name="z" value="0"/>
+            <arg name="vehicle" value="iris"/>
+            <arg name="ID" value="1"/>
+            <arg name="mavlink_udp_port" value="14581"/>
+            <arg name="mavlink_tcp_port" value="4561"/>
+        </include>
+    </group>
+
+    <group ns="iris_2">
+        <include file="$(find px4)/launch/single_vehicle_spawn.launch">
+            <arg name="x" value="1"/>
+            <arg name="y" value="-1"/>
+            <arg name="z" value="0"/>
+            <arg name="vehicle" value="iris"/>
+            <arg name="ID" value="2"/>
+            <arg name="mavlink_udp_port" value="14582"/>
+            <arg name="mavlink_tcp_port" value="4562"/>
+        </include>
+    </group>
+</launch>

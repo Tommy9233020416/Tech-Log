@@ -1,0 +1,119 @@
+; Auto-generated. Do not edit!
+
+
+(cl:in-package ros_learning-msg)
+
+
+;//! \htmlinclude LandingGoal.msg.html
+
+(cl:defclass <LandingGoal> (roslisp-msg-protocol:ros-message)
+  ((target_x
+    :reader target_x
+    :initarg :target_x
+    :type cl:float
+    :initform 0.0)
+   (target_y
+    :reader target_y
+    :initarg :target_y
+    :type cl:float
+    :initform 0.0)
+   (target_z
+    :reader target_z
+    :initarg :target_z
+    :type cl:float
+    :initform 0.0))
+)
+
+(cl:defclass LandingGoal (<LandingGoal>)
+  ())
+
+(cl:defmethod cl:initialize-instance :after ((m <LandingGoal>) cl:&rest args)
+  (cl:declare (cl:ignorable args))
+  (cl:unless (cl:typep m 'LandingGoal)
+    (roslisp-msg-protocol:msg-deprecation-warning "using old message class name ros_learning-msg:<LandingGoal> is deprecated: use ros_learning-msg:LandingGoal instead.")))
+
+(cl:ensure-generic-function 'target_x-val :lambda-list '(m))
+(cl:defmethod target_x-val ((m <LandingGoal>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader ros_learning-msg:target_x-val is deprecated.  Use ros_learning-msg:target_x instead.")
+  (target_x m))
+
+(cl:ensure-generic-function 'target_y-val :lambda-list '(m))
+(cl:defmethod target_y-val ((m <LandingGoal>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader ros_learning-msg:target_y-val is deprecated.  Use ros_learning-msg:target_y instead.")
+  (target_y m))
+
+(cl:ensure-generic-function 'target_z-val :lambda-list '(m))
+(cl:defmethod target_z-val ((m <LandingGoal>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader ros_learning-msg:target_z-val is deprecated.  Use ros_learning-msg:target_z instead.")
+  (target_z m))
+(cl:defmethod roslisp-msg-protocol:serialize ((msg <LandingGoal>) ostream)
+  "Serializes a message object of type '<LandingGoal>"
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'target_x))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'target_y))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'target_z))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+)
+(cl:defmethod roslisp-msg-protocol:deserialize ((msg <LandingGoal>) istream)
+  "Deserializes a message object of type '<LandingGoal>"
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'target_x) (roslisp-utils:decode-single-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'target_y) (roslisp-utils:decode-single-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'target_z) (roslisp-utils:decode-single-float-bits bits)))
+  msg
+)
+(cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<LandingGoal>)))
+  "Returns string type for a message object of type '<LandingGoal>"
+  "ros_learning/LandingGoal")
+(cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql 'LandingGoal)))
+  "Returns string type for a message object of type 'LandingGoal"
+  "ros_learning/LandingGoal")
+(cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<LandingGoal>)))
+  "Returns md5sum for a message object of type '<LandingGoal>"
+  "0889c97caa2572f42484385187224bc4")
+(cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'LandingGoal)))
+  "Returns md5sum for a message object of type 'LandingGoal"
+  "0889c97caa2572f42484385187224bc4")
+(cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<LandingGoal>)))
+  "Returns full string definition for message of type '<LandingGoal>"
+  (cl:format cl:nil "# ====== DO NOT MODIFY! AUTOGENERATED FROM AN ACTION DEFINITION ======~%# Goal: 目标位置 (X, Y)~%float32 target_x~%float32 target_y~%float32 target_z~%~%~%"))
+(cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'LandingGoal)))
+  "Returns full string definition for message of type 'LandingGoal"
+  (cl:format cl:nil "# ====== DO NOT MODIFY! AUTOGENERATED FROM AN ACTION DEFINITION ======~%# Goal: 目标位置 (X, Y)~%float32 target_x~%float32 target_y~%float32 target_z~%~%~%"))
+(cl:defmethod roslisp-msg-protocol:serialization-length ((msg <LandingGoal>))
+  (cl:+ 0
+     4
+     4
+     4
+))
+(cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <LandingGoal>))
+  "Converts a ROS message object to a list"
+  (cl:list 'LandingGoal
+    (cl:cons ':target_x (target_x msg))
+    (cl:cons ':target_y (target_y msg))
+    (cl:cons ':target_z (target_z msg))
+))

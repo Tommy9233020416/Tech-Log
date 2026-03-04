@@ -1,0 +1,10 @@
+# Goal: 目标位置 (X, Y)
+float32 target_x
+float32 target_y
+float32 target_z
+---
+# Result: 最终是否成功
+bool success
+---
+# Feedback: 当前高度
+float32 current_z

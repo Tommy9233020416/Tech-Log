@@ -1,0 +1,27 @@
+<launch>
+    <param name="/use_sim_time" value="true" />
+
+    <include file="$(find px4)/launch/mavros_posix_sitl.launch" >
+        <arg name="fcu_url" value="udp://:14540@127.0.0.1:14557"/>
+    </include>    
+
+    <node pkg="mavros" type="mavparam" name="set_cbrk_supply" args="set CBRK_SUPPLY_CHK 894281" 
+          launch-prefix="bash -c 'sleep 15; $0 $@' " />
+    
+    <node pkg="mavros" type="mavparam" name="set_rcl_except" args="set COM_RCL_EXCEPT 4" 
+          launch-prefix="bash -c 'sleep 15; $0 $@' " />
+    
+    <node pkg="mavros" type="mavparam" name="set_rc_loss_act" args="set NAV_RCL_ACT 0" 
+          launch-prefix="bash -c 'sleep 15; $0 $@' " />
+    
+    <node pkg="mavros" type="mavparam" name="set_disarm_preflight" args="set COM_DISARM_PRFLT 0" 
+          launch-prefix="bash -c 'sleep 15; $0 $@' " />
+
+    <node pkg="ros_learning" type="drone_circle_node" name="drone_circle_node" 
+          output="screen" 
+          launch-prefix="bash -c 'sleep 20; $0 $@' "> 
+        
+        <param name="radius" value="5.0" />
+        <param name="omega" value="0.5" />
+    </node>
+</launch>
