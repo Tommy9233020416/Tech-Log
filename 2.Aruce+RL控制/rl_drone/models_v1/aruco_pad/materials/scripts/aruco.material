@@ -1,0 +1,13 @@
+material ArucoPad/Marker
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture aruco_marker.png
+      }
+    }
+  }
+}

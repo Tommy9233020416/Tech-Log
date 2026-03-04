@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- MAVROS posix SITL environment launch script -->
+    <!-- launches Gazebo, PX4, and MAVROS -->
+    
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+    <arg name="R" default="0"/>
+    <arg name="P" default="0"/>
+    <arg name="Y" default="0"/>
+    <arg name="est" default="ekf2"/>
+    <arg name="vehicle" default="iris"/>
+    <arg name="world" default="$(find rl_drone)/worlds/tracking.world"/>
+    <arg name="sdf" default="$(find px4)/Tools/sitl_gazebo/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+    <arg name="rcS" default="$(find px4)/posix-configs/SITL/init/$(arg est)/$(arg vehicle)"/>
+
+    <arg name="gui" default="true"/>
+    <arg name="debug" default="false"/>
+    <arg name="verbose" default="false"/>
+    <arg name="paused" default="false"/>
+    <arg name="respawn_gazebo" default="false"/>
+    
+    <arg name="interactive" default="true"/>
+    <env name="PX4_SIM_MODEL" value="$(arg vehicle)" />
+    <env name="PX4_ESTIMATOR" value="$(arg est)" />
+
+    <node name="sitl" pkg="px4" type="px4" output="screen"
+        args="$(find px4)/ROMFS/px4fmu_common -s etc/init.d-posix/rcS" required="true"/>
+
+    <!-- Gazebo sim -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="world_name" value="$(arg world)"/>
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="verbose" value="$(arg verbose)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="respawn_gazebo" value="$(arg respawn_gazebo)"/>
+    </include>
+
+    <!-- drone spawn -->
+    <node name="$(anon vehicle_spawn)" pkg="gazebo_ros" type="spawn_model" output="screen" args="-sdf -file $(arg sdf) -model $(arg vehicle) -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
+
+    <!-- pad spawn delayed to give gazebo GUI time to breathe -->
+    <arg name="pad_sdf" default="$(find rl_drone)/models/aruco_pad/model.sdf"/>
+    <node name="pad_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
+          args="-sdf -file $(arg pad_sdf) -model aruco_pad -x 1.0 -y 1.0 -z 0.0"
+          launch-prefix="bash -c 'sleep 10; $0 $@' "/>
+
+    <!-- mavros -->
+    <include file="$(find mavros)/launch/node.launch">
+        <arg name="pluginlists_yaml" value="$(find mavros)/launch/px4_pluginlists.yaml" />
+        <arg name="config_yaml" value="$(find mavros)/launch/px4_config.yaml" />
+        <arg name="fcu_url" value="udp://:14540@localhost:14557" />
+        <arg name="gcs_url" value="" />
+        <arg name="tgt_system" value="1" />
+        <arg name="tgt_component" value="1" />
+        <arg name="log_output" value="screen" />
+        <arg name="fcu_protocol" value="v2.0" />
+        <arg name="respawn_mavros" default="false" />
+    </include>
+
+    <!-- Configure PX4 SITL to allow OFFBOARD mode without an RC controller connected -->
+    <node pkg="mavros" type="mavparam" name="set_rcl_except" args="set COM_RCL_EXCEPT 4" 
+          launch-prefix="bash -c 'sleep 5; $0 $@' " />
+    <node pkg="mavros" type="mavparam" name="set_rc_loss_act" args="set NAV_RCL_ACT 0" 
+          launch-prefix="bash -c 'sleep 5; $0 $@' " />
+
+    <!-- Our Embodied AI nodes -->
+    <node name="target_mover" pkg="rl_drone" type="target_mover.py" output="screen" />
+
+</launch>

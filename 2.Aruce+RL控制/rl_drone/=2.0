@@ -1,0 +1,12 @@
+Collecting shimmy
+  Downloading Shimmy-2.0.0-py3-none-any.whl.metadata (3.5 kB)
+Requirement already satisfied: gymnasium in /usr/local/lib/python3.8/dist-packages (1.0.0)
+Requirement already satisfied: numpy>=1.18.0 in /usr/local/lib/python3.8/dist-packages (from shimmy) (1.24.4)
+Requirement already satisfied: cloudpickle>=1.2.0 in /usr/local/lib/python3.8/dist-packages (from gymnasium) (3.1.2)
+Requirement already satisfied: typing-extensions>=4.3.0 in /usr/local/lib/python3.8/dist-packages (from gymnasium) (4.13.2)
+Requirement already satisfied: farama-notifications>=0.0.1 in /usr/local/lib/python3.8/dist-packages (from gymnasium) (0.0.4)
+Requirement already satisfied: importlib-metadata>=4.8.0 in /usr/local/lib/python3.8/dist-packages (from gymnasium) (8.5.0)
+Requirement already satisfied: zipp>=3.20 in /root/.local/lib/python3.8/site-packages (from importlib-metadata>=4.8.0->gymnasium) (3.20.2)
+Downloading Shimmy-2.0.0-py3-none-any.whl (30 kB)
+Installing collected packages: shimmy
+Successfully installed shimmy-2.0.0
