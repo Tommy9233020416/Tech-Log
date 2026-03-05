@@ -1,2 +1,0 @@
-set(ros_learning_MESSAGE_FILES "/root/catkin_ws/devel/share/ros_learning/msg/LandingAction.msg;/root/catkin_ws/devel/share/ros_learning/msg/LandingActionGoal.msg;/root/catkin_ws/devel/share/ros_learning/msg/LandingActionResult.msg;/root/catkin_ws/devel/share/ros_learning/msg/LandingActionFeedback.msg;/root/catkin_ws/devel/share/ros_learning/msg/LandingGoal.msg;/root/catkin_ws/devel/share/ros_learning/msg/LandingResult.msg;/root/catkin_ws/devel/share/ros_learning/msg/LandingFeedback.msg")
-set(ros_learning_SERVICE_FILES "")
