@@ -1,0 +1,7 @@
+# YOLOv8 Training Data Configuration
+path: /root/ros_ws/src/rl_drone_yolo/scripts/dataset
+train: images/train
+val: images/train  # Using same for validation for this quick setup
+
+names:
+  0: pad
